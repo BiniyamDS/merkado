@@ -3,5 +3,6 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 
 ## Tasks to do
 - [x] Setup routing
-- [ ] Design login page
-- [ ] Design registration page
+- [x] Design login page
+- [x] Design registration page
+- [ ] Setup firebase auth
