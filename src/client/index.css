@@ -7,5 +7,5 @@
 }
 
 .btn {
-  @apply p-3 m-2 mx-auto rounded-lg text-white disabled:bg-gray-500 disabled:cursor-not-allowed;
+  @apply p-3 m-2 mx-auto rounded-lg text-white disabled:bg-gray-500 disabled:cursor-not-allowed active:ring-2;
 }

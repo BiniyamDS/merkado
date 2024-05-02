@@ -38,7 +38,7 @@ const Login = () => {
           />
         </label>
         <button
-          className="btn bg-green-500 w-full hover:bg-green-600"
+          className="btn bg-red-500 w-full hover:bg-red-600"
           onClick={handleSubmit}
           type="submit"
         >

@@ -5,7 +5,7 @@ const Card = ({ children }) => {
         className=" flex flex-col mx-auto pt-16 w-1/2 h-96"
         style={{ maxWidth: "400px" }}
       >
-        <h1 className="mx-auto text-4xl text-slate-500 font-bold mb-5">Merkado</h1>
+        <img src="/logo.png" className="mb-5" alt="logo-merkado" />
         <div className="flex flex-col border-2 p-8 rounded-md shadow-md">{children}</div>
       </div>
     </div>
