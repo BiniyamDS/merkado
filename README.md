@@ -6,4 +6,8 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 - [x] Design login page
 - [x] Design registration page
 - [x] Design logo
+- [x] Fix up login and register pages
+- [ ] Add a loading button
+- [ ] Add forgot password page
+- [ ] Design home page
 - [ ] Setup firebase auth

@@ -6,7 +6,7 @@ const Card = ({ children }) => {
         style={{ maxWidth: "400px" }}
       >
         <img src="/logo.png" className="mb-5" alt="logo-merkado" />
-        <div className="flex flex-col border-2 p-8 rounded-md shadow-md">{children}</div>
+        <div className="flex flex-col border-2 px-8 py-4 rounded-md shadow-md">{children}</div>
       </div>
     </div>
   );
