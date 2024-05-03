@@ -1,24 +1,34 @@
 import Card from "../components/Card";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import LoadingButton from "../components/LoadingButton";
 
 const Login = () => {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const [error, setError] = useState()
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState();
 
   useEffect(() => {
-    emailRef.current.focus()
-  })
+    emailRef.current.focus();
+  });
 
-  function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
-    setError()
-    if(!emailRef.current.value || !passwordRef.current.value){
-      setError('Enter an email and password')
-      return
+    setError();
+    if (!emailRef.current.value || !passwordRef.current.value) {
+      setError("Enter an email and password");
+      return;
     }
-    console.log('submitted', emailRef.current.value, passwordRef.current.value)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log(
+          "submitted",
+          emailRef.current.value,
+          passwordRef.current.value
+        );
+        resolve()
+      }, 2000);
+    })
   }
 
   return (
@@ -48,15 +58,22 @@ const Login = () => {
             ref={passwordRef}
           />
         </label>
-        <button
-          className="btn bg-red-500 w-full hover:bg-red-600"
-          onClick={handleSubmit}
+        <LoadingButton
+          handleAction={handleSubmit}
           type="submit"
         >
           Login
-        </button>
+        </LoadingButton>
       </form>
-      <p className="mx-auto text-lg">Don't have an account? <Link className='text-blue-800 hover:underline' to='/register'>Sign up</Link></p>
+      <p className="mx-auto text-lg">
+        Don't have an account?{" "}
+        <Link
+          className="text-blue-800 hover:underline"
+          to="/register"
+        >
+          Sign up
+        </Link>
+      </p>
     </Card>
   );
 };
