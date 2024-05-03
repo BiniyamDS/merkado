@@ -35,7 +35,7 @@ const Login = () => {
     <Card>
       <h1 className="font-bold text-3xl pb-2 mx-auto">Sign in</h1>
       {error && <h1 className="error">{error}</h1>}
-      <form className="py-2">
+      <form className="py-2 flex flex-col">
         <label
           className="text-lg"
           htmlFor="email"
@@ -49,7 +49,7 @@ const Login = () => {
         </label>
         <label
           className="text-lg"
-          htmlFor="email"
+          htmlFor="password"
         >
           Password
           <input
@@ -58,6 +58,7 @@ const Login = () => {
             ref={passwordRef}
           />
         </label>
+        <Link className="links mx-auto" to='/forgot-password'>Forgot password?</Link>
         <LoadingButton
           handleAction={handleSubmit}
           type="submit"
@@ -68,7 +69,7 @@ const Login = () => {
       <p className="mx-auto text-lg">
         Don't have an account?{" "}
         <Link
-          className="text-blue-800 hover:underline"
+          className="links"
           to="/register"
         >
           Sign up
