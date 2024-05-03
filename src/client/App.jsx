@@ -4,6 +4,9 @@ import Register from "./routes/register";
 import Login from "./routes/login";
 import PrivateRoutes from "./components/PrivateRoutes";
 import ForgotPassword from "./routes/forgotPassword";
+import Home from "./routes/home";
+import About from "./routes/about";
+import Products from "./routes/products";
 
 const App = () => {
   return (
@@ -12,7 +15,20 @@ const App = () => {
         <Route
           path="/"
           element={<Root />}
-        />
+        >
+          <Route
+            index
+            element={<Home />}
+          />
+          <Route
+            path="/about"
+            element={<About />}
+          />
+          <Route
+            path="/products"
+            element={<Products />}
+          />
+        </Route>
       </Route>
       <Route
         path="/login"
