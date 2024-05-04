@@ -11,3 +11,9 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 - [x] Add forgot password page
 - [x] Design home page
 - [x] Setup firebase auth
+### User interface
+- [x] Make logo transparent
+- [ ] Improve navbar
+- [ ] Improve product cards UI
+### Functionality
+- [ ] Set user types upon registration

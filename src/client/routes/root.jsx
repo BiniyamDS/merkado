@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const Root = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-slate-100">
       <NavBar />
       <Outlet />
       <Footer/>
