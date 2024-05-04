@@ -9,7 +9,7 @@ app.get("/hello", (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
-  res.json(produts)
+  res.json(products)
 })
 
 ViteExpress.listen(app, 3000, () =>

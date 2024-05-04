@@ -10,4 +10,4 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 - [x] Add a loading button
 - [x] Add forgot password page
 - [x] Design home page
-- [ ] Setup firebase auth
+- [x] Setup firebase auth

@@ -1,12 +1,15 @@
 import Card from "../components/Card";
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingButton from "../components/LoadingButton";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState();
+  const { signIn, test } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -19,16 +22,15 @@ const Login = () => {
       setError("Enter an email and password");
       return;
     }
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log(
-          "submitted",
-          emailRef.current.value,
-          passwordRef.current.value
-        );
-        resolve()
-      }, 2000);
-    })
+    
+    try {
+      console.log(test)
+      await signIn(emailRef.current.value, passwordRef.current.value)
+      navigate('/')
+    } catch(err){
+      console.log(err)
+      setError('Failed to sign in')
+    }
   }
 
   return (
@@ -58,7 +60,12 @@ const Login = () => {
             ref={passwordRef}
           />
         </label>
-        <Link className="links mx-auto" to='/forgot-password'>Forgot password?</Link>
+        <Link
+          className="links mx-auto"
+          to="/forgot-password"
+        >
+          Forgot password?
+        </Link>
         <LoadingButton
           handleAction={handleSubmit}
           type="submit"

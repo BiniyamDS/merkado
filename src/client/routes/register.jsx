@@ -1,19 +1,22 @@
 import Card from "../components/Card";
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingButton from "../components/LoadingButton";
+import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const [error, setError] = useState();
+  const { register } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     emailRef.current.focus();
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError();
     if (!emailRef.current.value || !passwordRef.current.value) {
@@ -26,16 +29,13 @@ const Register = () => {
       return;
     }
 
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log(
-          "submitted",
-          emailRef.current.value,
-          passwordRef.current.value
-        );
-        resolve();
-      }, 2000);
-    });
+    try {
+      await register(emailRef.current.value, passwordRef.current.value);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setError("Failed to create an account");
+    }
   }
 
   return (

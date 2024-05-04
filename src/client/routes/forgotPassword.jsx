@@ -2,11 +2,13 @@ import Card from "../components/Card";
 import { useRef, useEffect, useState } from "react";
 import LoadingButton from "../components/LoadingButton";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const ForgotPassword = () => {
   const emailRef = useRef();
   const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
+  const {resetPassword} = useAuth()
 
   useEffect(() => {
     emailRef.current.focus();
@@ -20,12 +22,13 @@ const ForgotPassword = () => {
       setError("Please enter an email address");
       return;
     }
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setSuccess(true);
-        resolve();
-      }, 2000);
-    });
+    try {
+      await resetPassword(emailRef.current.value)
+      setSuccess(true)
+    } catch(err) {
+      console.log(err)
+      setError('Failed to reset password')
+    }
   }
 
   return (

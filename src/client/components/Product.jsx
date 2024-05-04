@@ -2,7 +2,7 @@ const Product = ({ item }) => {
   return (
     <div className="w-1/3 p-4 hover:shadow-lg rounded-lg hover:cursor-pointer my-4">
       <img
-        className="m-0 rounded-t-xl"
+        className="rounded-t-xl w-72 h-72"
         src={item.imgURL}
         alt={item.desc}
       />

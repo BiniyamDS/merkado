@@ -7,42 +7,45 @@ import ForgotPassword from "./routes/forgotPassword";
 import Home from "./routes/home";
 import About from "./routes/about";
 import Products from "./routes/products";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const App = () => {
   return (
-    <Routes>
-      <Route element={<PrivateRoutes />}>
-        <Route
-          path="/"
-          element={<Root />}
-        >
+    <AuthProvider>
+      <Routes>
+        <Route element={<PrivateRoutes />}>
           <Route
-            index
-            element={<Home />}
-          />
-          <Route
-            path="/about"
-            element={<About />}
-          />
-          <Route
-            path="/products"
-            element={<Products />}
-          />
+            path="/"
+            element={<Root />}
+          >
+            <Route
+              index
+              element={<Home />}
+            />
+            <Route
+              path="/about"
+              element={<About />}
+            />
+            <Route
+              path="/products"
+              element={<Products />}
+            />
+          </Route>
         </Route>
-      </Route>
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-      <Route
-        path="/forgot-password"
-        element={<ForgotPassword />}
-      />
-      <Route
-        path="/register"
-        element={<Register />}
-      />
-    </Routes>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+        <Route
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        />
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+      </Routes>
+    </AuthProvider>
   );
 };
 
