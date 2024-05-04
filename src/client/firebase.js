@@ -3,6 +3,8 @@
 import firebase from 'firebase/compat/app'
 // import { getAnalytics } from 'firebase/analytics';
 import 'firebase/compat/auth'
+import { getFirestore } from 'firebase/firestore';
+// import { collection, getDocs } from "firebase/firestore"; 
 
 // TODO: Add SDKs for Firebase products that you want to use
 import "firebase/auth";
@@ -25,4 +27,5 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app)
 export const auth = app.auth();
+export const db = getFirestore(app)
 export default app;

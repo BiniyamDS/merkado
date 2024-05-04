@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
 import SplashScreen from "../components/SplashScreen";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 const AuthContext = createContext();
 
@@ -11,8 +13,16 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
+  const [products, setProducts] = useState()
 
+  async function getProducts() {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    const products_db = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    setProducts(products_db)
+  }
   useEffect(() => {
+    console.log("first");
+    getProducts()
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setLoading(false);
       setCurrentUser(user);
@@ -33,7 +43,7 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
+    return auth.sendPasswordResetEmail(email);
   }
 
   const value = {
@@ -41,12 +51,13 @@ export function AuthProvider({ children }) {
     register,
     signIn,
     logout,
-    resetPassword
+    resetPassword,
+    products
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {loading ? <SplashScreen/> : children}
+      {loading ? <SplashScreen /> : children}
       {/* <SplashScreen/> */}
     </AuthContext.Provider>
   );

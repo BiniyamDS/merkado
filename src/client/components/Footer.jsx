@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <div className="flex bg-blue-500 text-white p-4">
-        <p className="mx-auto">Merkado {new Date().getFullYear()} All rights reserved</p>
-    </div>
-  )
-}
+    <footer className="flex fixed bottom-0 w-full bg-blue-900 text-white py-4 px-6">
+      <p className="mx-auto">&copy; {new Date().getFullYear()} Merkado. All rights reserved.</p>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

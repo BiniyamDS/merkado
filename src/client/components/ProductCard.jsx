@@ -1,4 +1,4 @@
-const Product = ({ item }) => {
+const ProductCard = ({ item }) => {
   return (
     <div className="w-1/3 p-4 hover:shadow-lg rounded-lg hover:cursor-pointer my-4">
       <img
@@ -22,4 +22,4 @@ const Product = ({ item }) => {
   );
 };
 
-export default Product;
+export default ProductCard;
