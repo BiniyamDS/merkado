@@ -8,6 +8,7 @@ import Home from "./routes/home";
 import About from "./routes/about";
 import Products from "./routes/products";
 import { AuthProvider } from "./contexts/AuthContext";
+import Product from './routes/product'
 
 const App = () => {
   return (
@@ -29,6 +30,10 @@ const App = () => {
             <Route
               path="/products"
               element={<Products />}
+            />
+            <Route
+              path="/product/:productId"
+              element={<Product />}
             />
           </Route>
         </Route>

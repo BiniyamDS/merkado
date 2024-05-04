@@ -14,8 +14,9 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 ### User interface
 - [x] Make logo transparent
 - [x] Improve product cards UI
+- [ ] Improve product page
 - [ ] Improve navbar
 ### Functionality
 - [x] Setup firestore as a database
-- [ ] Add product page accesible by product id
+- [x] Add product page accesible by product id
 - [ ] Set user types upon registration

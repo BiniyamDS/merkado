@@ -1,6 +1,17 @@
+import {useNavigate} from 'react-router-dom'
+
 const ProductCard = ({ item }) => {
+  const navigate = useNavigate()
+
+  function handleClick(){
+    navigate(`/product/${item.id}`, {state: item})
+  }
+
   return (
-    <div className="w-1/3 p-4 hover:shadow-lg rounded-lg hover:cursor-pointer my-4">
+    <div
+      className="w-1/3 p-4 transition duration-500 ease-in-out hover:shadow-lg rounded-lg hover:cursor-pointer my-4"
+      onClick={handleClick}
+    >
       <img
         className="rounded-xl w-72 h-72"
         src={item.imgURL}
