@@ -9,7 +9,7 @@ const ProductCard = ({ item }) => {
 
   return (
     <div
-      className="w-1/3 p-4 transition duration-500 ease-in-out hover:shadow-lg rounded-lg hover:cursor-pointer my-4"
+      className="w-1/3 p-4 transition duration-500 ease-in-out hover:shadow-2xl rounded-lg hover:cursor-pointer my-4"
       onClick={handleClick}
     >
       <img

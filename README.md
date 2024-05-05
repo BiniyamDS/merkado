@@ -19,4 +19,4 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 ### Functionality
 - [x] Setup firestore as a database
 - [x] Add product page accesible by product id
-- [ ] Set user types upon registration
+- [x] Set user types upon registration

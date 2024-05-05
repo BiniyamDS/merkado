@@ -9,6 +9,7 @@ import About from "./routes/about";
 import Products from "./routes/products";
 import { AuthProvider } from "./contexts/AuthContext";
 import Product from './routes/product'
+import CreateAccount from "./routes/createAccount";
 
 const App = () => {
   return (
@@ -48,6 +49,10 @@ const App = () => {
         <Route
           path="/register"
           element={<Register />}
+        />
+        <Route
+          path="/create-account"
+          element={<CreateAccount />}
         />
       </Routes>
     </AuthProvider>
