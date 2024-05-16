@@ -23,7 +23,7 @@ const Home = () => {
       className="mx-auto flex flex-wrap w-full"
       style={{ maxWidth: "1000px" }}
     >
-      <LoadingButton handleAction={() => logout()}>Log out</LoadingButton>
+      
       {products && products.map((product) => (
         <ProductCard key={product.id} item={product} />
       ))}

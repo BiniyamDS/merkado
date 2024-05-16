@@ -1,6 +1,10 @@
+import LoadingButton from "../components/LoadingButton"
+
 const Products = () => {
   return (
-    <div>Products</div>
+    <div>Products
+      <LoadingButton handleAction={() => logout()}>Log out</LoadingButton>
+    </div>
   )
 }
 

@@ -8,24 +8,24 @@ function NavLinks() {
       <NavLink
         to="/"
         className={({ isActive }) =>
-        isActive? " border-b-4 border-red-500" : "text-gray-900"
-      }
+          isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
+        }
       >
         Home
       </NavLink>
       <NavLink
         to="/about"
         className={({ isActive }) =>
-        isActive? " border-b-4 border-red-500" : "text-gray-900"
-      }
+          isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
+        }
       >
         About us
       </NavLink>
       <NavLink
         to="/products"
         className={({ isActive }) =>
-        isActive? " border-b-4 border-red-500" : "text-gray-900"
-      }
+          isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
+        }
       >
         Products
       </NavLink>
@@ -41,7 +41,7 @@ const Nav = () => {
   }
   return (
     <>
-      <nav className="w-1/3 flex justify-end" style={{maxWidth: '300px'}}>
+      <nav className="w-1/3 flex justify-end" style={{ maxWidth: "300px" }}>
         <div className="hidden w-full md:flex justify-between">
           <NavLinks />
         </div>
