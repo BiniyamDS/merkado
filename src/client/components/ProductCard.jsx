@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
+import Tags from './sub-components/Tags';
 
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
@@ -22,13 +23,14 @@ const ProductCard = ({ item }) => {
         <div className="flex flex-col">
           <h2 className="text-sm text-gray-600">{item.seller}</h2>
           <div className="flex justify-between items-center">
-            <h2 className="text-sm text-gray-500">{item.price} Birr</h2>
-            <button className="text-sm bg-red-500 p-2 rounded-lg text-white hover:bg-red-700 active:ring-2"
-            onClick={handleAdd}
-            >
+            <h2 className=" text-gray-500">{item.price} Birr</h2>
+            <button onClick={(e) => {
+              e.stopPropagation()
+              console.log('hello')}} className="bg-red-500 p-2 rounded-lg text-white hover:bg-red-700 active:ring-2">
               Add to cart
             </button>
           </div>
+            <Tags tags={item.tags}/>
         </div>
       </div>
     </div>
