@@ -11,7 +11,7 @@ const ProductCard = ({ item }) => {
 
   return (
     <div
-      className="w-1/3 p-4 transition duration-500 ease-in-out hover:shadow-2xl rounded-lg hover:cursor-pointer my-4 max-h-96 max-w-56 flex flex-col flex-shrink-1"
+      className="w-1/3 p-4 transition duration-500 ease-in-out hover:shadow-2xl rounded-lg hover:cursor-pointer my-4 max-h-90 max-w-56 flex flex-col flex-shrink-1"
       onClick={handleClick}
     >
       <img className="rounded-xl max-w-full max-h-44" src={item.imgURL} alt={item.desc} />
