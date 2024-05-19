@@ -31,7 +31,7 @@ const Register = () => {
 
     try {
       await register(emailRef.current.value, passwordRef.current.value);
-      navigate("/");
+      navigate("/create-account");
     } catch (err) {
       console.log(err);
       setError("Failed to create an account");

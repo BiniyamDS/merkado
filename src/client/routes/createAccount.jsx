@@ -33,8 +33,10 @@ const CreateAccount = () => {
               <input
                 className=""
                 type="radio"
-                value='account'
+                value='buyer'
+                name="account-type"
                 ref={accountRef}
+
               />{" "}
               Buyer
             </label>
@@ -42,7 +44,8 @@ const CreateAccount = () => {
               <input
                 className="px-4"
                 type="radio"
-                value='account'
+                value='merchant'
+                name="account-type"
                 ref={accountRef}
               />{" "}
               Merchant
