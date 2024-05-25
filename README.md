@@ -20,6 +20,7 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 - [ ] Setup carts page
 - [ ] Display user info in profile page
 - [ ] Setup merchant user interface
+- [ ] Fix footer
 ### Functionality
 - [x] Setup firestore as a database
 - [x] Add product page accesible by product id

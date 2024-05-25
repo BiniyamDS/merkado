@@ -31,7 +31,6 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    console.log("first");
     getProducts()
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setLoading(false);
@@ -62,7 +61,8 @@ export function AuthProvider({ children }) {
     signIn,
     logout,
     resetPassword,
-    products
+    products,
+    getProducts
   };
 
   return (
