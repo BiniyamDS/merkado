@@ -7,7 +7,10 @@ const CreateAccount = () => {
   const accountRef = useRef();
   const phoneRef = useRef();
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    e.preventDefault()
+    
+  }
   return (
     <Card>
       <h1 className="font-bold text-3xl px-2 mx-auto">Create Account</h1>

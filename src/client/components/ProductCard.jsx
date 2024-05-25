@@ -14,7 +14,7 @@ const ProductCard = ({ item }) => {
       className="w-1/3 p-4 transition duration-500 ease-in-out hover:shadow-2xl rounded-lg hover:cursor-pointer my-4 max-h-90 max-w-56 flex flex-col flex-shrink-1"
       onClick={handleClick}
     >
-      <img className="rounded-xl max-w-full max-h-44" src={item.imgURL} alt={item.desc} />
+      <img className="rounded-t-xl max-w-full max-h-44" src={item.imgURL} alt={item.desc} />
       <div className="py-4">
         <h1 className="text-lg font-bold">{item.title}</h1>
         <div className="flex flex-col">
