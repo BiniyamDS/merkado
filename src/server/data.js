@@ -8,6 +8,7 @@ const products = [
     price: 2500,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const products = [
     price: 2500,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const products = [
     price: 2500,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const products = [
     price: 2500,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const products = [
     price: 2500,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
   {
     id: 6,
@@ -58,6 +63,7 @@ const products = [
     price: 39.95,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
   {
     id: 7,
@@ -68,6 +74,7 @@ const products = [
     price: 39.95,
     seller: "Foot locker",
     date: new Date(),
+    tags: ['hi', 'hello']
   },
 ];
 
