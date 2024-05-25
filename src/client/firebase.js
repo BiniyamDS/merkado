@@ -13,6 +13,10 @@ import "firebase/auth";
 // Your web app's Firebase configuration
 // console.log(import.meta.env.VITE_REACT_APP_API_KEY)
 
+import { getStorage, ref } from "firebase/storage";
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
   authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
@@ -26,6 +30,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app)
+const storage = getStorage();
+
+// Create a storage reference from our storage service
+const storageRef = ref(storage);
 export const auth = app.auth();
 export const db = getFirestore(app)
 export default app;
