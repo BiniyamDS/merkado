@@ -1,7 +1,17 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
 import SplashScreen from "../components/SplashScreen";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  setDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  getDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
 const AuthContext = createContext();
@@ -31,7 +41,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    getProducts()
+    getProducts();
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setLoading(false);
       setCurrentUser(user);
@@ -39,20 +49,108 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  function register(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
+  async function register(email, password) {
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      addUser(user.uid);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   function logout() {
     return auth.signOut();
   }
 
+  async function addUser(uid) {
+    await setDoc(doc(db, "users", uid), {
+      cart: [],
+      phoneNumber: null,
+      accountType: 1,
+    });
+  }
+
+  async function updateUser(account, phone) {
+    const userRef = doc(db, "users", currentUser.uid);
+
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(userRef, {
+      phoneNumber: phone,
+      accountType: Number(account),
+    });
+  }
+
   function signIn(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
   }
 
+  async function addToCart(productId) {
+    const cartRef = doc(db, "users", currentUser.uid);
+
+    try {
+      updateDoc(cartRef, {
+        cart: arrayUnion(productId),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function removeFromCart(productId) {
+    const cartRef = doc(db, "users", currentUser.uid);
+
+    try {
+      updateDoc(cartRef, {
+        cart: arrayRemove(productId),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
+  }
+
+  async function getCart() {
+    const userRef = doc(db, "users", currentUser.uid);
+    const cart_db = [];
+
+    try {
+      const docSnap = await getDoc(userRef); // Get the document data
+
+      if (docSnap.exists) {
+        const data = docSnap.data();
+        const cartArray = data["cart"]; // Access the desired array
+        // await cartArray.map(async item => cart_db.push(await getProduct(item)))
+        for (const item of cartArray) {
+          const p_item = await getProduct(item);
+          cart_db.push({id: item ,...p_item});
+        }
+        console.log(cart_db)
+        return cart_db;
+        // You can perform other operations on the array elements here
+      } else {
+        // Document not found handling
+        console.log("Document not found!");
+      }
+    } catch (error) {
+      console.error("Error retrieving document:", error);
+    }
+  }
+
+  async function getProduct(id) {
+    const productRef = doc(db, "products", id);
+    try {
+      const docSnap = await getDoc(productRef);
+      const productData = docSnap.data();
+      return productData;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const value = {
@@ -62,7 +160,11 @@ export function AuthProvider({ children }) {
     logout,
     resetPassword,
     products,
-    getProducts
+    getProducts,
+    updateUser,
+    addToCart,
+    removeFromCart,
+    getCart,
   };
 
   return (

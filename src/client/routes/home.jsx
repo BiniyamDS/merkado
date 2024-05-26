@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 
 const Home = () => {
   // const [products, setProducts] = useState();
-  const {products} = useAuth()
+  const { products } = useAuth();
 
   useEffect(() => {
     // async function fetchProducts() {
@@ -13,7 +13,6 @@ const Home = () => {
     //   setProducts(data);
     // }
     // fetchProducts();
-    
   }, []);
 
   return (
@@ -21,10 +20,13 @@ const Home = () => {
       className="mx-auto flex flex-wrap w-full"
       style={{ maxWidth: "1000px" }}
     >
-      
-      {products && products.map((product) => (
-        <ProductCard key={product.id} item={product} />
-      ))}
+      {products &&
+        products.map((product) => (
+          <ProductCard
+            key={product.id}
+            item={product}
+          />
+        ))}
     </div>
   );
 };

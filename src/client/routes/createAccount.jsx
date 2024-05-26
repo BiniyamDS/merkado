@@ -16,7 +16,7 @@ const CreateAccount = () => {
   const [error, setError] = useState();
   const navigate = useNavigate()
 
-  const { currentUser } = useAuth();
+  const { currentUser, updateUser } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,6 +30,7 @@ const CreateAccount = () => {
       updateProfile(auth.currentUser, {
         displayName: usernameRef.current.value,
       });
+      updateUser(accountRef.current.value, phoneRef.current.value)
       navigate('/')
     } catch (err) {
       console.log(err);
@@ -62,7 +63,7 @@ const CreateAccount = () => {
               <input
                 className=""
                 type="radio"
-                value="buyer"
+                value='1'
                 name="account-type"
                 ref={accountRef}
                 defaultChecked
@@ -73,7 +74,7 @@ const CreateAccount = () => {
               <input
                 className="px-4"
                 type="radio"
-                value="merchant"
+                value='2'
                 name="account-type"
                 ref={accountRef}
               />{" "}

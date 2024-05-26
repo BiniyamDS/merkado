@@ -1,6 +1,24 @@
 import { X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
-function ProductTable({ bag }) {
+function ProductTable() {
+  const { getCart } = useAuth();
+
+  const [cartList, setCart] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchCart() {
+      setLoading(true);
+      const cart_db = await getCart()
+      setCart(cart_db);
+      
+      setLoading(false);
+    }
+    fetchCart();
+  }, [getCart]);
+
   return (
     <div
       className="p-4 mx-auto"
@@ -15,7 +33,7 @@ function ProductTable({ bag }) {
           </tr>
         </thead>
         <tbody>
-          {bag.map((item) => (
+          {cartList && cartList.map((item) => (
             <tr
               key={item.id}
               className=""
@@ -49,3 +67,42 @@ function ProductTable({ bag }) {
 }
 
 export default ProductTable;
+
+
+async function getNums(){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([1, 2, 3])
+    }, 2000);
+  })
+}
+// {
+//   console.log('heloo', item)
+//   return (
+
+//   <tr
+//     key={item.id}
+//     className=""
+//   >
+//     <td
+//       className="flex px-3 py-4 border-b-2"
+//       style={{ width: "500px" }}
+//     >
+//       <img
+//         className="w-32 h-32 rounded-md mx-2"
+//         src={item.imgURL}
+//         alt=""
+//       />
+//       <div className="p-4">
+//         <h1 className="font-bold text-2xl">{item.title}</h1>
+//         <p className="text-lg text-gray-500">{item.seller}</p>
+//       </div>
+//     </td>
+//     <td className="px-3 py-2 border-b-2 text-gray-400">
+//       <p>{item.price} Birr</p>
+//     </td>
+//     <td className="px-3 py-2 border-b-2 text-gray-400">
+//       <X className="hover:cursor-pointer hover:text-black mx-auto" />
+//     </td>
+//   </tr>
+// )}

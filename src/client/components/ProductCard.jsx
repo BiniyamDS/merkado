@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Tags from "./sub-components/Tags";
+import { useAuth } from "../contexts/AuthContext";
 
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
+
+  const { addToCart } = useAuth();
 
   function handleClick() {
     navigate(`/product/${item.id}`, { state: item });
@@ -28,7 +31,8 @@ const ProductCard = ({ item }) => {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                console.log("hello");
+                console.log("added to cart");
+                addToCart(item.id)
               }}
               className="bg-red-500 p-2 rounded-lg text-white hover:bg-red-700 active:ring-2"
             >
