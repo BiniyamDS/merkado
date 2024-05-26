@@ -1,37 +1,23 @@
 import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import {useAuth} from '../contexts/AuthContext.jsx'
 import ProfileButton from "./sub-components/ProfileButton.jsx";
+import Hint from "./sub-components/Hint.jsx";
 
 function NavLinks() {
-
-  
-
   return (
     <>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
-        }
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/cart"
-        className={({ isActive }) =>
-          isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
-        }
-      >
-        Cart
-      </NavLink>
-      {/* <div
-        className='flex border-2 h-8 w-8 bg-blue-600 text-white rounded-full'
-      >
-        <p className="m-auto">{currentUser.displayName[0]}</p>
-      </div> */}
-      <ProfileButton/>
+      <Hint text="Cart">
+        <NavLink
+          to="/cart"
+          className={({ isActive }) =>
+            isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
+          }
+        >
+          <ShoppingCart className="h-8 w-8" />
+        </NavLink>
+      </Hint>
+      <ProfileButton />
     </>
   );
 }
@@ -44,7 +30,10 @@ const Nav = () => {
   }
   return (
     <>
-      <nav className="w-1/3 flex justify-end" style={{ maxWidth: "300px" }}>
+      <nav
+        className="w-20"
+        style={{ maxWidth: "300px" }}
+      >
         <div className="hidden w-full md:flex justify-between">
           <NavLinks />
         </div>
@@ -62,3 +51,5 @@ const Nav = () => {
 };
 
 export default Nav;
+
+function NavItem() {}
