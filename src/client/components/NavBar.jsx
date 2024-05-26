@@ -16,13 +16,13 @@ const NavBar = () => {
           alt="logo"
         />
       </Link>
-      <div className="border-2 p-2 rounded-full">
+      <div className="focus:ring-2 ring-red-500 border-2 p-2 rounded-lg w-96">
         <input
-          className="focus:none focus:outline-none"
+          className="focus:outline-none"
           type="text"
-          placeholder="Search for a product..."
+          placeholder="Search Merkado"
         />
-        <span className="search-icon pr-2 hover:cursor-pointer active:shadow-xl">
+        <span className="search-icon pr-2 hover:cursor-pointer active:shadow-xl float-right">
           <FontAwesomeIcon icon={faSearch} />
         </span>
       </div>
