@@ -1,8 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import {useAuth} from '../contexts/AuthContext.jsx'
+import ProfileButton from "./sub-components/ProfileButton.jsx";
 
 function NavLinks() {
+
+  
+
   return (
     <>
       <NavLink
@@ -14,21 +19,19 @@ function NavLinks() {
         Home
       </NavLink>
       <NavLink
-        to="/about"
+        to="/cart"
         className={({ isActive }) =>
           isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
         }
       >
-        About us
+        Cart
       </NavLink>
-      <NavLink
-        to="/products"
-        className={({ isActive }) =>
-          isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
-        }
+      {/* <div
+        className='flex border-2 h-8 w-8 bg-blue-600 text-white rounded-full'
       >
-        Products
-      </NavLink>
+        <p className="m-auto">{currentUser.displayName[0]}</p>
+      </div> */}
+      <ProfileButton/>
     </>
   );
 }

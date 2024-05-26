@@ -1,18 +1,44 @@
 import Card from "../components/Card";
 import LoadingButton from "../components/LoadingButton";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useAuth } from "../contexts/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
+
+import { getAuth, updateProfile } from "firebase/auth";
+
+const auth = getAuth();
 
 const CreateAccount = () => {
   const usernameRef = useRef();
   const accountRef = useRef();
   const phoneRef = useRef();
 
-  function handleSubmit() {
-    e.preventDefault()
-    
+  const [error, setError] = useState();
+  const navigate = useNavigate()
+
+  const { currentUser } = useAuth();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError();
+    if (!usernameRef.current.value || !phoneRef.current.value) {
+      setError("Please enter a username and phone number");
+      return;
+    }
+
+    try {
+      updateProfile(auth.currentUser, {
+        displayName: usernameRef.current.value,
+      });
+      navigate('/')
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <Card>
+      {/* {JSON.stringify(currentUser)} */}
+      {error && <p className="error">{error}</p>}
       <h1 className="font-bold text-3xl px-2 mx-auto">Create Account</h1>
       <form className="p-2">
         <label
@@ -36,10 +62,10 @@ const CreateAccount = () => {
               <input
                 className=""
                 type="radio"
-                value='buyer'
+                value="buyer"
                 name="account-type"
                 ref={accountRef}
-
+                defaultChecked
               />{" "}
               Buyer
             </label>
@@ -47,7 +73,7 @@ const CreateAccount = () => {
               <input
                 className="px-4"
                 type="radio"
-                value='merchant'
+                value="merchant"
                 name="account-type"
                 ref={accountRef}
               />{" "}

@@ -6,7 +6,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import ForgotPassword from "./routes/forgotPassword";
 import Home from "./routes/home";
 import About from "./routes/about";
-import Products from "./routes/products";
+import Cart from "./routes/cart";
 import { AuthProvider } from "./contexts/AuthContext";
 import Product from './routes/product'
 import CreateAccount from "./routes/createAccount";
@@ -29,8 +29,8 @@ const App = () => {
               element={<About />}
             />
             <Route
-              path="/products"
-              element={<Products />}
+              path="/cart"
+              element={<Cart />}
             />
             <Route
               path="/product/:productId"

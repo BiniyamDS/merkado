@@ -1,13 +1,11 @@
 // import products from "../../server/data.js";
 import ProductCard from "../components/ProductCard.jsx";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext.jsx";
-import axios from "axios";
-import LoadingButton from "../components/LoadingButton.jsx";
 
 const Home = () => {
   // const [products, setProducts] = useState();
-  const {currentUser, logout, products} = useAuth()
+  const {products} = useAuth()
 
   useEffect(() => {
     // async function fetchProducts() {
