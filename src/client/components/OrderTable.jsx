@@ -1,24 +1,4 @@
-import { X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
-
-function OrderTable() {
-  const { getCart, removeFromCart } = useAuth();
-
-  const [cartList, setCart] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  async function fetchCart() {
-    setLoading(true);
-    const cart_db = await getCart();
-    setCart(cart_db);
-
-    setLoading(false);
-  }
-  useEffect(() => {
-    fetchCart();
-  }, [getCart]);
-
+function OrderTable({ cartList, fetch }) {
 
   return (
     <div
@@ -33,13 +13,10 @@ function OrderTable() {
             <th className="px-3 py-2 text-lg">Status</th>
           </tr>
         </thead>
-        {loading ? (
-          
-          <p className="font-bold p-2">Loading data...</p>
-        ) : (
-          <tbody>
-            {console.log(cartList)}
-            {cartList.length !== 0 ? cartList.map((item) => (
+        <tbody>
+          {cartList &&
+            cartList.map((item) => (
+              
               <tr
                 key={item.id}
                 className=""
@@ -62,12 +39,11 @@ function OrderTable() {
                   <p>{item.price} Birr</p>
                 </td>
                 <td className="px-3 py-2 border-b-2 text-gray-400">
-                Shipped
+                  <p>Shipped</p>
                 </td>
               </tr>
-            )) : <p className="font-bold">Your cart is empty</p> }
-          </tbody>
-        )}
+            ))}
+        </tbody>
       </table>
     </div>
   );

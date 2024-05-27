@@ -141,6 +141,55 @@ export function AuthProvider({ children }) {
     }
   }
 
+  async function emptyCart(){
+    console.log('Cart emptied')
+    const cartRef = doc(db, "users", currentUser.uid);
+  
+    try {
+      updateDoc(cartRef, {
+        cart: [],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
+  async function getOrders(){
+    const userRef = doc(db, "users", currentUser.uid);
+
+    try {
+      const docSnap = await getDoc(userRef); // Get the document data
+
+      if (docSnap.exists) {
+        const data = docSnap.data();
+        const prodArray = data["orders"]; // Access the desired array
+        // await cartArray.map(async item => cart_db.push(await getProduct(item)))
+        
+        return prodArray;
+        // You can perform other operations on the array elements here
+      } else {
+        // Document not found handling
+        console.log("Document not found!");
+      }
+    } catch (error) {
+      console.error("Error retrieving document:", error);
+    }
+  }
+
+  async function checkOut(cartList){
+    console.log('Cart checked out')
+    const cartRef = doc(db, "users", currentUser.uid);
+
+    try {
+      updateDoc(cartRef, {
+        orders: arrayUnion(...cartList),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async function getProduct(id) {
     const productRef = doc(db, "products", id);
     try {
@@ -164,6 +213,9 @@ export function AuthProvider({ children }) {
     addToCart,
     removeFromCart,
     getCart,
+    emptyCart,
+    checkOut,
+    getOrders
   };
 
   return (
