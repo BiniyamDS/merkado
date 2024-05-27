@@ -15,17 +15,18 @@ A simple e-commerce application that caters to two types of users: Sellers and B
 - [x] Make logo transparent
 - [x] Improve product cards UI
 - [x] Improve navbar
+- [x] Display user info in profile page
+- [x] Setup carts page
+- [ ] Setup order page
 - [ ] Improve navbar for small screens
 - [ ] Improve product page
-- [ ] Setup carts page
-- [ ] Display user info in profile page
 - [ ] Setup merchant user interface
 - [ ] Fix footer
 ### Functionality
 - [x] Setup firestore as a database
 - [x] Add product page accesible by product id
 - [x] Set user types upon registration
-- [ ] Collect user information upon registration
-- [ ] Store user information in firebase
+- [x] Collect user information upon registration
+- [x] Store user information in firebase
 - [ ] CRUD products for merchant users
 - [ ] Implement firebase data connect as database

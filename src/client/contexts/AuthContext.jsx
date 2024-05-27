@@ -130,7 +130,6 @@ export function AuthProvider({ children }) {
           const p_item = await getProduct(item);
           cart_db.push({id: item ,...p_item});
         }
-        console.log(cart_db)
         return cart_db;
         // You can perform other operations on the array elements here
       } else {

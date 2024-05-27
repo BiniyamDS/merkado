@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
-function ProductTable() {
+function OrderTable() {
   const { getCart, removeFromCart } = useAuth();
 
   const [cartList, setCart] = useState(null);
@@ -19,14 +19,6 @@ function ProductTable() {
     fetchCart();
   }, [getCart]);
 
-  async function handleRemove(productId){
-    try {
-      await removeFromCart(productId)
-      await fetchCart();
-    } catch(err){
-      console.log(err)
-    }
-  }
 
   return (
     <div
@@ -38,7 +30,7 @@ function ProductTable() {
           <tr>
             <th className="px-3 py-2 text-lg">Description</th>
             <th className="px-3 py-2 text-lg">Price</th>
-            <th className="px-3 py-2 text-lg">Remove</th>
+            <th className="px-3 py-2 text-lg">Status</th>
           </tr>
         </thead>
         {loading ? (
@@ -70,7 +62,7 @@ function ProductTable() {
                   <p>{item.price} Birr</p>
                 </td>
                 <td className="px-3 py-2 border-b-2 text-gray-400">
-                  <X onClick={() => handleRemove(item.id)} className="hover:cursor-pointer hover:text-black mx-auto" />
+                Shipped
                 </td>
               </tr>
             )) : <p className="font-bold">Your cart is empty</p> }
@@ -81,4 +73,4 @@ function ProductTable() {
   );
 }
 
-export default ProductTable;
+export default OrderTable;

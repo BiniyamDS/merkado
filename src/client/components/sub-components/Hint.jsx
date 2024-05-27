@@ -4,6 +4,7 @@ const Hint = ({ text, children }) => {
   const [hover, setHover] = useState(false);
   return (
     <div
+      className=""
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

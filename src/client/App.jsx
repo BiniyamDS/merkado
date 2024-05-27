@@ -10,6 +10,7 @@ import Cart from "./routes/cart";
 import { AuthProvider } from "./contexts/AuthContext";
 import Product from './routes/product'
 import CreateAccount from "./routes/createAccount";
+import Orders from './routes/orders'
 
 const App = () => {
   return (
@@ -31,6 +32,10 @@ const App = () => {
             <Route
               path="/cart"
               element={<Cart />}
+            />
+            <Route
+              path="/orders"
+              element={<Orders />}
             />
             <Route
               path="/product/:productId"

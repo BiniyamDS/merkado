@@ -1,5 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import {
+  Menu,
+  X,
+  ShoppingCart,
+  ShoppingBag,
+} from "lucide-react";
 import { useState } from "react";
 import ProfileButton from "./sub-components/ProfileButton.jsx";
 import Hint from "./sub-components/Hint.jsx";
@@ -17,6 +22,18 @@ function NavLinks() {
           <ShoppingCart className="h-8 w-8" />
         </NavLink>
       </Hint>
+      
+      <Hint text="Orders">
+        <NavLink
+          to="/orders"
+          className={({ isActive }) =>
+            isActive ? "text-red-500" : "text-gray-900 hover:text-red-400"
+          }
+        >
+          <ShoppingBag className="h-8 w-8" />
+        </NavLink>
+      </Hint>
+      
       <ProfileButton />
     </>
   );
@@ -31,7 +48,7 @@ const Nav = () => {
   return (
     <>
       <nav
-        className="w-20"
+        className="w-32"
         style={{ maxWidth: "300px" }}
       >
         <div className="hidden w-full md:flex justify-between">
