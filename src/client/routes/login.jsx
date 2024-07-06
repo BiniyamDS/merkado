@@ -24,7 +24,7 @@ const Login = () => {
     }
     
     try {
-      console.log(test)
+      // console.log(test)
       await signIn(emailRef.current.value, passwordRef.current.value)
       navigate('/')
     } catch(err){

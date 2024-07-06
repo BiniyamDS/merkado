@@ -55,9 +55,30 @@ export function AuthProvider({ children }) {
         email,
         password
       );
+      console.log(`uid: ${user.uid}`);
       addUser(user.uid);
     } catch (err) {
+      console.log("error found");
       throw new Error(err);
+    }
+  }
+
+  async function account_type() {
+    const userRef = doc(db, "users", currentUser.uid);
+
+    try {
+      const docSnap = await getDoc(userRef); // Get the document data
+      const act_type = { 1: "Client", 2: "Merchant" };
+      if (docSnap.exists) {
+        const data = docSnap.data();
+        console.log(data["accountType"]);
+        return act_type[data["accountType"]];
+      } else {
+        // Document not found handling
+        console.log("Document not found!");
+      }
+    } catch (error) {
+      console.error("Error retrieving document:", error);
     }
   }
 
@@ -66,11 +87,15 @@ export function AuthProvider({ children }) {
   }
 
   async function addUser(uid) {
-    await setDoc(doc(db, "users", uid), {
-      cart: [],
-      phoneNumber: null,
-      accountType: 1,
-    });
+    try {
+      await setDoc(doc(db, "users", uid), {
+        cart: [],
+        phoneNumber: null,
+        accountType: 1,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function updateUser(account, phone) {
@@ -128,7 +153,7 @@ export function AuthProvider({ children }) {
         // await cartArray.map(async item => cart_db.push(await getProduct(item)))
         for (const item of cartArray) {
           const p_item = await getProduct(item);
-          cart_db.push({id: item ,...p_item});
+          cart_db.push({ id: item, ...p_item });
         }
         return cart_db;
         // You can perform other operations on the array elements here
@@ -141,10 +166,10 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function emptyCart(){
-    console.log('Cart emptied')
+  async function emptyCart() {
+    console.log("Cart emptied");
     const cartRef = doc(db, "users", currentUser.uid);
-  
+
     try {
       updateDoc(cartRef, {
         cart: [],
@@ -152,10 +177,9 @@ export function AuthProvider({ children }) {
     } catch (err) {
       console.log(err);
     }
-
   }
 
-  async function getOrders(){
+  async function getOrders() {
     const userRef = doc(db, "users", currentUser.uid);
 
     try {
@@ -165,7 +189,7 @@ export function AuthProvider({ children }) {
         const data = docSnap.data();
         const prodArray = data["orders"]; // Access the desired array
         // await cartArray.map(async item => cart_db.push(await getProduct(item)))
-        
+
         return prodArray;
         // You can perform other operations on the array elements here
       } else {
@@ -177,8 +201,8 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function checkOut(cartList){
-    console.log('Cart checked out')
+  async function checkOut(cartList) {
+    console.log("Cart checked out");
     const cartRef = doc(db, "users", currentUser.uid);
 
     try {
@@ -215,7 +239,8 @@ export function AuthProvider({ children }) {
     getCart,
     emptyCart,
     checkOut,
-    getOrders
+    getOrders,
+    account_type,
   };
 
   return (
