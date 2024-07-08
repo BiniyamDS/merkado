@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase.js";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext.jsx";
+import LoadingButton from "../LoadingButton.jsx";
 
 const AddModal = ({ item }) => {
   const navigate = useNavigate();
@@ -28,11 +29,13 @@ const AddModal = ({ item }) => {
       desc: descRef.current.value,
       imgURL: imgURLRef.current.value,
       price: priceRef.current.value,
-      tags: tagsRef.current.value,
-      sellerID: currentUser.displayName,
+      tags: [`${tagsRef.current.value}`],
+      seller: currentUser.displayName,
       date: new Date()
     });
     console.log("Document written with ID: ", docRef.id);
+    getProducts()
+    navigate('/')
   }
 
   return (
@@ -102,13 +105,13 @@ const AddModal = ({ item }) => {
               Tags
               <input className="input" type="text" name="tags" id="p-tags" ref={tagsRef} />
             </label>
-            <button
-              onClick={handleAdd}
+            <LoadingButton
+              handleAction={handleAdd}
               type="submit"
               className="modal__btn modal__btn-primary !mx-2"
             >
               Add item
-            </button>
+            </LoadingButton>
             <button
               className="modal__btn"
               data-micromodal-close
